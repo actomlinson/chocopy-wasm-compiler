@@ -14,6 +14,10 @@ describe('run', () => {
 
   assert('add-overflow', "4294967295 + 1", PyBigInt(4294967296n));
 
+  assert('two-big-nums', "18446744073709551615 + 18446744073709551615", PyBigInt(36893488147419103230n))
+  assert('two-big-nums', "4294967295 + 4294967295", PyBigInt(8589934590n))
+  assert('two-big-nums-overflow', "4611686018427387903  + 4611686018427387903", PyBigInt(9223372036854775806n))
+  
   assert('sub', "1 - 2", PyInt(1 - 2));
 
   assert('sub-underflow', "0 - 4294967295 - 1", PyBigInt(-4294967296n));

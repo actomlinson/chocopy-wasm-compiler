@@ -64,11 +64,7 @@ export const bignumfunctions =
   (local $a i32)
   (local $b i32)
   (local $result i32)
-  
-  
-  (i32.const 1001)
-  (call $print)
-  (drop)
+
   
   (local.get $n1)
   (i32.const 1)

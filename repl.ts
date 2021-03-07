@@ -30,7 +30,7 @@ export class BasicREPL {
       offset: 1
     };
     this.currentTypeEnv = defaultTypeEnv;
-    this.functions = bignumfunctions;
+    this.functions = bignumfunctions.join("");
   }
   async run(source : string) : Promise<Value> {
     const config : Config = {importObject: this.importObject, env: this.currentEnv, typeEnv: this.currentTypeEnv, functions: this.functions};

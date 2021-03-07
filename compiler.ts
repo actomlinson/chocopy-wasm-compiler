@@ -249,7 +249,10 @@ function codeGenExpr(expr : Expr<Type>, env: GlobalEnv) : Array<string> {
     case "binop":
       const lhsStmts = codeGenExpr(expr.left, env);
       const rhsStmts = codeGenExpr(expr.right, env);
-      if (expr.op == BinOp.Is) {
+      if (expr.op == BinOp.Plus) {
+        return [...lhsStmts, ...rhsStmts, "(call $$add)"];
+      }
+      else if (expr.op == BinOp.Is) {
         return [...lhsStmts, ...rhsStmts, codeGenBinOp(expr.op), ...encodeLiteral]
       } else {
         return [...lhsStmts, ...decodeLiteral, ...rhsStmts, ...decodeLiteral, codeGenBinOp(expr.op), ...encodeLiteral]
@@ -381,7 +384,7 @@ function codeGenLiteral(literal : Literal) : Array<string> {
 function codeGenBinOp(op : BinOp) : string {
   switch(op) {
     case BinOp.Plus:
-      return "(i32.add)"
+      return "(call $$add)"
     case BinOp.Minus:
       return "(i32.sub)"
     case BinOp.Mul:
